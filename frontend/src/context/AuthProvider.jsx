@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";  // Import from the new file
+import { createContext, useEffect, useState } from "react";
 
-const AuthProvider = ({ children }) => {
+export const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -18,5 +19,3 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;
