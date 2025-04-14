@@ -243,3 +243,5 @@
 [2025-04-14T17:11:16.838Z] INFO: MongoDB connected: localhost
 [2025-04-14T17:28:53.533Z] INFO: Server running at http://localhost:3000
 [2025-04-14T17:28:53.564Z] INFO: MongoDB connected: localhost
+[2025-04-14T17:53:58.354Z] INFO: Server running at http://localhost:3000
+[2025-04-14T17:53:58.427Z] INFO: MongoDB connected: localhost

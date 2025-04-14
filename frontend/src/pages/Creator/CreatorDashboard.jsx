@@ -26,7 +26,7 @@ const CreatorDashboard = () => {
       icon: Globe,
       color: "bg-gradient-to-br from-emerald-500 to-teal-500",
       hoverColor: "from-emerald-600 to-teal-600",
-      route: "/creator/cultural-content",
+      route:"/creator/upload",
     },
     {
       id: "emotional-support",

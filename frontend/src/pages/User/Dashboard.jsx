@@ -30,6 +30,7 @@ const DashboardSections = (props) => {
       icon: BookOpen,
       color: "bg-gradient-to-br from-blue-500 to-teal-500",
       hoverColor: "from-blue-600 to-teal-600",
+      route: "/user/culturedashboard",
     },
     {
       id: "meeting",
