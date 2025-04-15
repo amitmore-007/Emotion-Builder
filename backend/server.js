@@ -10,19 +10,21 @@ const adminRoutes = require("./routes/adminRoutes");
 const meetingRoutes = require("./routes/meetings");
 
 const videoRoutes = require("./routes/VideoRoute"); // Fixed import (removed duplicate)
-const cors = require("cors");
+
 const PORT = process.env.PORT || 3000;
 
 // Connect to database
 connectDB();
 
-app.use(cors());
 const corsOptions = {
-  origin: 'http://localhost:5173', // Change this to match your frontend URL
-  methods: 'GET,POST',
-  allowedHeaders: 'Content-Type,Authorization',
+  origin: [
+    'http://localhost:5173',
+    'https://emotion-builder.vercel.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true // add this if you're using cookies
 };
-
 app.use(cors(corsOptions));
 
 // Adjust based on your file structure
@@ -37,6 +39,11 @@ app.use("/api/meetings", meetingRoutes);
 // Serve uploaded videos statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/videos', videoRoutes);
+
+app.get("/ping", (req, res) => {
+  res.send("Backend is working!");
+});
+
 // Start the server
 app.listen(PORT, () => {
   logger.info(`Server running at http://localhost:${PORT}`);
