@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,10 +36,7 @@ const AdminLogin = () => {
       localStorage.setItem("adminToken", data.token);
       setMessage({ text: "Login Successful! Redirecting...", type: "success" });
 
-      // Simulate redirection without react-router
-      setTimeout(() => {
-        window.location.href = "/admin/dashboard";
-      }, 1500);
+     navigate("/admin/dashboard");
     } catch (err) {
       setMessage({ text: err.message || "Login failed", type: "error" });
     } finally {

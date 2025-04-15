@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const UserLogin = () => {
@@ -7,6 +8,7 @@ const UserLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+   const navigate = useNavigate();
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,9 +35,9 @@ const UserLogin = () => {
       setMessage({ text: "Login Successful! Redirecting...", type: "success" });
       
       // Simulate redirection without react-router
-      setTimeout(() => {
-        window.location.href = "/user/dashboard";
-      }, 1500);
+     
+      navigate("/user/dashboard");
+     
     } catch (err) {
       setMessage({ text: err.message || "Login failed", type: "error" });
     } finally {

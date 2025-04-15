@@ -28,12 +28,12 @@ const UserRegister = () => {
         throw new Error(data.message || "Registration failed");
       }
       
-      setMessage({ text: "Registration Successful! Redirecting to login...", type: "success" });
+      setMessage({ text: "Registration Successful!", type: "success" });
       
       // Simulate redirection without react-router
-      setTimeout(() => {
-        window.location.href = "/user/login";
-      }, 1500);
+     
+        
+    
     } catch (err) {
       setMessage({ text: err.message || "Registration failed", type: "error" });
     } finally {
