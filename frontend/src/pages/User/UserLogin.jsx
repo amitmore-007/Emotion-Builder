@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
 
 const UserLogin = () => {
@@ -456,8 +457,8 @@ const UserLogin = () => {
           
           <div style={styles.registerText}>
             Don't have an account?{" "}
-            <a 
-              href="/user/register" 
+            <Link
+              to ="/user/register" 
               style={styles.registerLink}
               onMouseOver={(e) => e.target.style.cssText = `
                 color: #3f37c9;
@@ -475,7 +476,7 @@ const UserLogin = () => {
               `}
             >
               Create Account
-            </a>
+            </Link>
           </div>
         </div>
       </div>

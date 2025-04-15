@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminRegister = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
@@ -12,21 +17,24 @@ const AdminRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       // Using fetch instead of axios to avoid dependencies
-      const response = await fetch("https://emotion-builder.onrender.com/api/admin/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      
+      const response = await fetch(
+        "https://emotion-builder.onrender.com/api/admin/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.message || "Registration failed");
       }
-      
+
       setMessage({ text: "Registration Successful!", type: "success" });
       // Clear form after successful registration
       setFormData({ name: "", email: "", password: "" });
@@ -48,7 +56,7 @@ const AdminRegister = () => {
       justifyContent: "center",
       background: "linear-gradient(to bottom right, #f3f4f6, #e5e7eb)",
       padding: "20px",
-      fontFamily: "'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
+      fontFamily: "'Segoe UI', Roboto, 'Helvetica Neue', sans-serif",
     },
     card: {
       width: "100%",
@@ -56,45 +64,45 @@ const AdminRegister = () => {
       backgroundColor: "#ffffff",
       borderRadius: "12px",
       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-      overflow: "hidden"
+      overflow: "hidden",
     },
     cardHeader: {
       background: "linear-gradient(to right, #10b981, #059669)",
       padding: "28px 24px",
       color: "white",
-      textAlign: "center"
+      textAlign: "center",
     },
     cardTitle: {
       fontSize: "24px",
       fontWeight: "700",
-      margin: "0 0 8px 0"
+      margin: "0 0 8px 0",
     },
     cardSubtitle: {
       fontSize: "15px",
       fontWeight: "400",
       margin: "0",
-      opacity: "0.85"
+      opacity: "0.85",
     },
     cardBody: {
-      padding: "32px"
+      padding: "32px",
     },
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "24px"
+      gap: "24px",
     },
     formGroup: {
       display: "flex",
       flexDirection: "column",
-      gap: "8px"
+      gap: "8px",
     },
     label: {
       fontSize: "14px",
       fontWeight: "600",
-      color: "#374151"
+      color: "#374151",
     },
     inputWrapper: {
-      position: "relative"
+      position: "relative",
     },
     input: {
       width: "100%",
@@ -106,15 +114,15 @@ const AdminRegister = () => {
       border: "1px solid #d1d5db",
       borderRadius: "8px",
       boxSizing: "border-box",
-      transition: "all 0.2s ease"
+      transition: "all 0.2s ease",
     },
     inputHover: {
-      borderColor: "#a5f3c4"
+      borderColor: "#a5f3c4",
     },
     inputFocus: {
       borderColor: "#10b981",
       boxShadow: "0 0 0 3px rgba(16, 185, 129, 0.2)",
-      outline: "none"
+      outline: "none",
     },
     inputIcon: {
       position: "absolute",
@@ -123,7 +131,7 @@ const AdminRegister = () => {
       transform: "translateY(-50%)",
       color: "#9ca3af",
       width: "18px",
-      height: "18px"
+      height: "18px",
     },
     togglePasswordButton: {
       position: "absolute",
@@ -137,7 +145,7 @@ const AdminRegister = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "0"
+      padding: "0",
     },
     button: {
       width: "100%",
@@ -153,24 +161,24 @@ const AdminRegister = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
+      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)",
     },
     buttonHover: {
       backgroundColor: "#059669",
       transform: "translateY(-2px)",
-      boxShadow: "0 6px 10px rgba(16, 185, 129, 0.3)"
+      boxShadow: "0 6px 10px rgba(16, 185, 129, 0.3)",
     },
     buttonDisabled: {
       backgroundColor: "#6ee7b7",
       cursor: "not-allowed",
       transform: "none",
-      boxShadow: "none"
+      boxShadow: "none",
     },
     spinner: {
       animation: "spin 1s linear infinite",
       marginRight: "10px",
       width: "16px",
-      height: "16px"
+      height: "16px",
     },
     message: {
       marginTop: "24px",
@@ -178,50 +186,50 @@ const AdminRegister = () => {
       borderRadius: "8px",
       fontSize: "14px",
       fontWeight: "500",
-      textAlign: "center"
+      textAlign: "center",
     },
     success: {
       backgroundColor: "#ecfdf5",
       color: "#059669",
-      border: "1px solid #a7f3d0"
+      border: "1px solid #a7f3d0",
     },
     error: {
       backgroundColor: "#fef2f2",
       color: "#dc2626",
-      border: "1px solid #fecaca"
+      border: "1px solid #fecaca",
     },
     // New styles for the sign-in link section
     signInContainer: {
       marginTop: "24px",
       textAlign: "center",
       padding: "16px",
-      borderTop: "1px solid #e5e7eb"
+      borderTop: "1px solid #e5e7eb",
     },
     signInText: {
       fontSize: "14px",
       color: "#4b5563",
-      marginBottom: "0"
+      marginBottom: "0",
     },
     signInLink: {
       color: "#10b981",
       fontWeight: "600",
       textDecoration: "none",
       transition: "color 0.2s ease",
-      cursor: "pointer"
-    }
+      cursor: "pointer",
+    },
   };
 
   // SVG icons
   const icons = {
     user: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={styles.inputIcon}
       >
         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
@@ -229,14 +237,14 @@ const AdminRegister = () => {
       </svg>
     ),
     email: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={styles.inputIcon}
       >
         <rect x="2" y="4" width="20" height="16" rx="2"></rect>
@@ -244,14 +252,14 @@ const AdminRegister = () => {
       </svg>
     ),
     lock: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={styles.inputIcon}
       >
         <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
@@ -259,15 +267,15 @@ const AdminRegister = () => {
       </svg>
     ),
     eyeOpen: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        width="18" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        width="18"
         height="18"
       >
         <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
@@ -275,15 +283,15 @@ const AdminRegister = () => {
       </svg>
     ),
     eyeClosed: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        width="18" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        width="18"
         height="18"
       >
         <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
@@ -300,17 +308,28 @@ const AdminRegister = () => {
         stroke="currentColor"
         style={styles.spinner}
       >
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
       </svg>
-    )
+    ),
   };
 
-  // Function to navigate to login page
-  const navigateToLogin = () => {
-    // Redirect to login page - you would replace this with your actual routing logic
-    window.location.href = "/admin/login";
-  };
+  // // Function to navigate to login page
+  // const navigateToLogin = () => {
+  //   // Redirect to login page - you would replace this with your actual routing logic
+  //   window.location.href = "/admin/login";
+  // };
 
   // CSS keyframes for spinner
   const spinnerKeyframes = `
@@ -332,11 +351,13 @@ const AdminRegister = () => {
           <h2 style={styles.cardTitle}>Admin Registration</h2>
           <p style={styles.cardSubtitle}>Create your administrator account</p>
         </div>
-        
+
         <div style={styles.cardBody}>
           <form style={styles.form} onSubmit={handleRegister}>
             <div style={styles.formGroup}>
-              <label htmlFor="name" style={styles.label}>Full Name</label>
+              <label htmlFor="name" style={styles.label}>
+                Full Name
+              </label>
               <div style={styles.inputWrapper}>
                 {icons.user}
                 <input
@@ -348,7 +369,8 @@ const AdminRegister = () => {
                   placeholder="John Doe"
                   onChange={handleChange}
                   style={styles.input}
-                  onFocus={(e) => e.target.style.cssText = `
+                  onFocus={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -361,8 +383,10 @@ const AdminRegister = () => {
                     transition: all 0.2s ease;
                     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
                     outline: none;
-                  `}
-                  onBlur={(e) => e.target.style.cssText = `
+                  `)
+                  }
+                  onBlur={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -373,13 +397,16 @@ const AdminRegister = () => {
                     border-radius: 8px;
                     box-sizing: border-box;
                     transition: all 0.2s ease;
-                  `}
+                  `)
+                  }
                 />
               </div>
             </div>
 
             <div style={styles.formGroup}>
-              <label htmlFor="email" style={styles.label}>Email Address</label>
+              <label htmlFor="email" style={styles.label}>
+                Email Address
+              </label>
               <div style={styles.inputWrapper}>
                 {icons.email}
                 <input
@@ -391,7 +418,8 @@ const AdminRegister = () => {
                   placeholder="you@example.com"
                   onChange={handleChange}
                   style={styles.input}
-                  onFocus={(e) => e.target.style.cssText = `
+                  onFocus={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -404,8 +432,10 @@ const AdminRegister = () => {
                     transition: all 0.2s ease;
                     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
                     outline: none;
-                  `}
-                  onBlur={(e) => e.target.style.cssText = `
+                  `)
+                  }
+                  onBlur={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -416,13 +446,16 @@ const AdminRegister = () => {
                     border-radius: 8px;
                     box-sizing: border-box;
                     transition: all 0.2s ease;
-                  `}
+                  `)
+                  }
                 />
               </div>
             </div>
-            
+
             <div style={styles.formGroup}>
-              <label htmlFor="password" style={styles.label}>Password</label>
+              <label htmlFor="password" style={styles.label}>
+                Password
+              </label>
               <div style={styles.inputWrapper}>
                 {icons.lock}
                 <input
@@ -434,7 +467,8 @@ const AdminRegister = () => {
                   placeholder="••••••••"
                   onChange={handleChange}
                   style={styles.input}
-                  onFocus={(e) => e.target.style.cssText = `
+                  onFocus={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -447,8 +481,10 @@ const AdminRegister = () => {
                     transition: all 0.2s ease;
                     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
                     outline: none;
-                  `}
-                  onBlur={(e) => e.target.style.cssText = `
+                  `)
+                  }
+                  onBlur={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -459,7 +495,8 @@ const AdminRegister = () => {
                     border-radius: 8px;
                     box-sizing: border-box;
                     transition: all 0.2s ease;
-                  `}
+                  `)
+                  }
                 />
                 <button
                   type="button"
@@ -471,13 +508,29 @@ const AdminRegister = () => {
                 </button>
               </div>
             </div>
-            
+
             <button
               type="submit"
               disabled={isLoading}
-              style={isLoading ? {...styles.button, ...styles.buttonDisabled} : styles.button}
-              onMouseOver={(e) => !isLoading && (e.target.style.backgroundColor = "#059669", e.target.style.transform = "translateY(-2px)", e.target.style.boxShadow = "0 6px 10px rgba(16, 185, 129, 0.3)")}
-              onMouseOut={(e) => !isLoading && (e.target.style.backgroundColor = "#10b981", e.target.style.transform = "", e.target.style.boxShadow = "0 4px 6px rgba(16, 185, 129, 0.25)")}
+              style={
+                isLoading
+                  ? { ...styles.button, ...styles.buttonDisabled }
+                  : styles.button
+              }
+              onMouseOver={(e) =>
+                !isLoading &&
+                ((e.target.style.backgroundColor = "#059669"),
+                (e.target.style.transform = "translateY(-2px)"),
+                (e.target.style.boxShadow =
+                  "0 6px 10px rgba(16, 185, 129, 0.3)"))
+              }
+              onMouseOut={(e) =>
+                !isLoading &&
+                ((e.target.style.backgroundColor = "#10b981"),
+                (e.target.style.transform = ""),
+                (e.target.style.boxShadow =
+                  "0 4px 6px rgba(16, 185, 129, 0.25)"))
+              }
             >
               {isLoading ? (
                 <>
@@ -485,32 +538,50 @@ const AdminRegister = () => {
                   Processing...
                 </>
               ) : (
-                'Register Now'
+                "Register Now"
               )}
             </button>
           </form>
-          
+
           {message.text && (
-            <div style={{
-              ...styles.message,
-              ...(message.type === "success" ? styles.success : styles.error),
-            }}>
+            <div
+              style={{
+                ...styles.message,
+                ...(message.type === "success" ? styles.success : styles.error),
+              }}
+            >
               {message.text}
             </div>
           )}
-          
+
           {/* New Sign In Section */}
           <div style={styles.signInContainer}>
             <p style={styles.signInText}>
               Already have an account?{" "}
-              <a 
-                onClick={navigateToLogin} 
+              <Link
+                to="/admin/login"
                 style={styles.signInLink}
-                onMouseOver={(e) => e.target.style.color = "#059669"}
-                onMouseOut={(e) => e.target.style.color = "#10b981"}
+                onMouseOver={(e) =>
+                  (e.target.style.cssText = `
+                  color: #059669;
+                  font-weight: 600;
+                  cursor: pointer;
+                  text-decoration: underline;
+                  transition: all 0.2s ease;
+                `)
+                }
+                onMouseOut={(e) =>
+                  (e.target.style.cssText = `
+                  color: #10b981;
+                  font-weight: 600;
+                  cursor: pointer;
+                  text-decoration: none;
+                  transition: all 0.2s ease;
+                `)
+                }
               >
-                Sign in
-              </a>
+                Sign In
+              </Link>
             </p>
           </div>
         </div>

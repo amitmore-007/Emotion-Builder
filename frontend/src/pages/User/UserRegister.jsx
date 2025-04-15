@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
 const UserRegister = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
@@ -517,8 +518,8 @@ const UserRegister = () => {
           
           <div style={styles.loginText}>
             Already have an account?{" "}
-            <a 
-              href="/user/login" 
+            <Link 
+              to ="/user/login" 
               style={styles.loginLink}
               onMouseOver={(e) => e.target.style.cssText = `
                 color: #3f37c9;
@@ -536,7 +537,7 @@ const UserRegister = () => {
               `}
             >
               Sign In
-            </a>
+            </Link>
           </div>
         </div>
       </div>
