@@ -9,43 +9,68 @@ const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const meetingRoutes = require("./routes/meetings");
 const cors = require("cors");
+const videoRoutes = require("./routes/VideoRoute");
 
-const videoRoutes = require("./routes/VideoRoute"); // Fixed import (removed duplicate)
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 // Connect to database
 connectDB();
 
+// CORS Configuration
 const corsOptions = {
   origin: [
     'http://localhost:5173',
-    'https://emotion-builder.vercel.app'
+    'https://emotion-builder.vercel.app',
+    'https://emotion-builder.onrender.com'
   ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // add this if you're using cookies
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
 
-// Adjust based on your file structure
-app.use('/api', videoRoutes); // This ensures your routes are prefixed with /api
+// Request logging
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.path}`);
+  next();
+});
 
-// Middleware Routes
+// Favicon handling
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+// Routes
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Emotion Builder API is running",
+    documentation: "https://your-docs-url.com"
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: 'healthy' });
+});
+
 app.use("/api/creators", creatorRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/meetings", meetingRoutes);
-
-// Serve uploaded videos statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/videos', videoRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Ping endpoint
 app.get("/ping", (req, res) => {
   res.send("Backend is working!");
 });
 
-// Start the server
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
+});
+
+// Start server
 app.listen(PORT, () => {
   logger.info(`Server running at http://localhost:${PORT}`);
 });

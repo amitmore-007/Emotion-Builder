@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const CreatorRegister = () => {
   const [formData, setFormData] = useState({ 
     name: "", 

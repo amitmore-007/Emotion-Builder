@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -12,24 +13,27 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       // Using fetch instead of axios to avoid dependencies
-      const response = await fetch("https://emotion-builder.onrender.com/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      
+      const response = await fetch(
+        "https://emotion-builder.onrender.com/api/admin/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
-      
+
       localStorage.setItem("adminToken", data.token);
       setMessage({ text: "Login Successful! Redirecting...", type: "success" });
-      
+
       // Simulate redirection without react-router
       setTimeout(() => {
         window.location.href = "/admin/dashboard";
@@ -52,7 +56,7 @@ const AdminLogin = () => {
       justifyContent: "center",
       background: "linear-gradient(to bottom right, #f3f4f6, #e5e7eb)",
       padding: "20px",
-      fontFamily: "'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
+      fontFamily: "'Segoe UI', Roboto, 'Helvetica Neue', sans-serif",
     },
     card: {
       width: "100%",
@@ -60,45 +64,45 @@ const AdminLogin = () => {
       backgroundColor: "#ffffff",
       borderRadius: "12px",
       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-      overflow: "hidden"
+      overflow: "hidden",
     },
     cardHeader: {
       background: "linear-gradient(to right, #10b981, #059669)",
       padding: "28px 24px",
       color: "white",
-      textAlign: "center"
+      textAlign: "center",
     },
     cardTitle: {
       fontSize: "24px",
       fontWeight: "700",
-      margin: "0 0 8px 0"
+      margin: "0 0 8px 0",
     },
     cardSubtitle: {
       fontSize: "15px",
       fontWeight: "400",
       margin: "0",
-      opacity: "0.85"
+      opacity: "0.85",
     },
     cardBody: {
-      padding: "32px"
+      padding: "32px",
     },
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "24px"
+      gap: "24px",
     },
     formGroup: {
       display: "flex",
       flexDirection: "column",
-      gap: "8px"
+      gap: "8px",
     },
     label: {
       fontSize: "14px",
       fontWeight: "600",
-      color: "#374151"
+      color: "#374151",
     },
     inputWrapper: {
-      position: "relative"
+      position: "relative",
     },
     input: {
       width: "100%",
@@ -110,15 +114,15 @@ const AdminLogin = () => {
       border: "1px solid #d1d5db",
       borderRadius: "8px",
       boxSizing: "border-box",
-      transition: "all 0.2s ease"
+      transition: "all 0.2s ease",
     },
     inputHover: {
-      borderColor: "#a5f3c4"
+      borderColor: "#a5f3c4",
     },
     inputFocus: {
       borderColor: "#10b981",
       boxShadow: "0 0 0 3px rgba(16, 185, 129, 0.2)",
-      outline: "none"
+      outline: "none",
     },
     inputIcon: {
       position: "absolute",
@@ -127,7 +131,7 @@ const AdminLogin = () => {
       transform: "translateY(-50%)",
       color: "#9ca3af",
       width: "18px",
-      height: "18px"
+      height: "18px",
     },
     togglePasswordButton: {
       position: "absolute",
@@ -141,7 +145,7 @@ const AdminLogin = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "0"
+      padding: "0",
     },
     button: {
       width: "100%",
@@ -157,24 +161,24 @@ const AdminLogin = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
+      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)",
     },
     buttonHover: {
       backgroundColor: "#059669",
       transform: "translateY(-2px)",
-      boxShadow: "0 6px 10px rgba(16, 185, 129, 0.3)"
+      boxShadow: "0 6px 10px rgba(16, 185, 129, 0.3)",
     },
     buttonDisabled: {
       backgroundColor: "#6ee7b7",
       cursor: "not-allowed",
       transform: "none",
-      boxShadow: "none"
+      boxShadow: "none",
     },
     spinner: {
       animation: "spin 1s linear infinite",
       marginRight: "10px",
       width: "16px",
-      height: "16px"
+      height: "16px",
     },
     message: {
       marginTop: "24px",
@@ -182,48 +186,48 @@ const AdminLogin = () => {
       borderRadius: "8px",
       fontSize: "14px",
       fontWeight: "500",
-      textAlign: "center"
+      textAlign: "center",
     },
     success: {
       backgroundColor: "#ecfdf5",
       color: "#059669",
-      border: "1px solid #a7f3d0"
+      border: "1px solid #a7f3d0",
     },
     error: {
       backgroundColor: "#fef2f2",
       color: "#dc2626",
-      border: "1px solid #fecaca"
+      border: "1px solid #fecaca",
     },
     registerText: {
       marginTop: "24px",
       fontSize: "14px",
       color: "#6b7280",
-      textAlign: "center"
+      textAlign: "center",
     },
     registerLink: {
       color: "#10b981",
       fontWeight: "600",
       cursor: "pointer",
       textDecoration: "none",
-      transition: "all 0.2s ease"
+      transition: "all 0.2s ease",
     },
     registerLinkHover: {
       color: "#059669",
-      textDecoration: "underline"
-    }
+      textDecoration: "underline",
+    },
   };
 
   // SVG icons
   const icons = {
     email: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={styles.inputIcon}
       >
         <rect x="2" y="4" width="20" height="16" rx="2"></rect>
@@ -231,14 +235,14 @@ const AdminLogin = () => {
       </svg>
     ),
     lock: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={styles.inputIcon}
       >
         <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
@@ -246,15 +250,15 @@ const AdminLogin = () => {
       </svg>
     ),
     eyeOpen: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        width="18" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        width="18"
         height="18"
       >
         <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
@@ -262,15 +266,15 @@ const AdminLogin = () => {
       </svg>
     ),
     eyeClosed: (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        width="18" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        width="18"
         height="18"
       >
         <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
@@ -287,10 +291,21 @@ const AdminLogin = () => {
         stroke="currentColor"
         style={styles.spinner}
       >
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
       </svg>
-    )
+    ),
   };
 
   // CSS keyframes for spinner
@@ -313,11 +328,13 @@ const AdminLogin = () => {
           <h2 style={styles.cardTitle}>Admin Login</h2>
           <p style={styles.cardSubtitle}>Access your administrator account</p>
         </div>
-        
+
         <div style={styles.cardBody}>
           <form style={styles.form} onSubmit={handleLogin}>
             <div style={styles.formGroup}>
-              <label htmlFor="email" style={styles.label}>Email Address</label>
+              <label htmlFor="email" style={styles.label}>
+                Email Address
+              </label>
               <div style={styles.inputWrapper}>
                 {icons.email}
                 <input
@@ -329,7 +346,8 @@ const AdminLogin = () => {
                   placeholder="you@example.com"
                   onChange={handleChange}
                   style={styles.input}
-                  onFocus={(e) => e.target.style.cssText = `
+                  onFocus={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -342,8 +360,10 @@ const AdminLogin = () => {
                     transition: all 0.2s ease;
                     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
                     outline: none;
-                  `}
-                  onBlur={(e) => e.target.style.cssText = `
+                  `)
+                  }
+                  onBlur={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -354,13 +374,16 @@ const AdminLogin = () => {
                     border-radius: 8px;
                     box-sizing: border-box;
                     transition: all 0.2s ease;
-                  `}
+                  `)
+                  }
                 />
               </div>
             </div>
-            
+
             <div style={styles.formGroup}>
-              <label htmlFor="password" style={styles.label}>Password</label>
+              <label htmlFor="password" style={styles.label}>
+                Password
+              </label>
               <div style={styles.inputWrapper}>
                 {icons.lock}
                 <input
@@ -372,7 +395,8 @@ const AdminLogin = () => {
                   placeholder="••••••••"
                   onChange={handleChange}
                   style={styles.input}
-                  onFocus={(e) => e.target.style.cssText = `
+                  onFocus={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -385,8 +409,10 @@ const AdminLogin = () => {
                     transition: all 0.2s ease;
                     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
                     outline: none;
-                  `}
-                  onBlur={(e) => e.target.style.cssText = `
+                  `)
+                  }
+                  onBlur={(e) =>
+                    (e.target.style.cssText = `
                     width: 100%;
                     padding: 12px 12px 12px 40px;
                     font-size: 15px;
@@ -397,7 +423,8 @@ const AdminLogin = () => {
                     border-radius: 8px;
                     box-sizing: border-box;
                     transition: all 0.2s ease;
-                  `}
+                  `)
+                  }
                 />
                 <button
                   type="button"
@@ -409,13 +436,29 @@ const AdminLogin = () => {
                 </button>
               </div>
             </div>
-            
+
             <button
               type="submit"
               disabled={isLoading}
-              style={isLoading ? {...styles.button, ...styles.buttonDisabled} : styles.button}
-              onMouseOver={(e) => !isLoading && (e.target.style.backgroundColor = "#059669", e.target.style.transform = "translateY(-2px)", e.target.style.boxShadow = "0 6px 10px rgba(16, 185, 129, 0.3)")}
-              onMouseOut={(e) => !isLoading && (e.target.style.backgroundColor = "#10b981", e.target.style.transform = "", e.target.style.boxShadow = "0 4px 6px rgba(16, 185, 129, 0.25)")}
+              style={
+                isLoading
+                  ? { ...styles.button, ...styles.buttonDisabled }
+                  : styles.button
+              }
+              onMouseOver={(e) =>
+                !isLoading &&
+                ((e.target.style.backgroundColor = "#059669"),
+                (e.target.style.transform = "translateY(-2px)"),
+                (e.target.style.boxShadow =
+                  "0 6px 10px rgba(16, 185, 129, 0.3)"))
+              }
+              onMouseOut={(e) =>
+                !isLoading &&
+                ((e.target.style.backgroundColor = "#10b981"),
+                (e.target.style.transform = ""),
+                (e.target.style.boxShadow =
+                  "0 4px 6px rgba(16, 185, 129, 0.25)"))
+              }
             >
               {isLoading ? (
                 <>
@@ -423,42 +466,48 @@ const AdminLogin = () => {
                   Processing...
                 </>
               ) : (
-                'Login'
+                "Login"
               )}
             </button>
           </form>
-          
+
           {message.text && (
-            <div style={{
-              ...styles.message,
-              ...(message.type === "success" ? styles.success : styles.error),
-            }}>
+            <div
+              style={{
+                ...styles.message,
+                ...(message.type === "success" ? styles.success : styles.error),
+              }}
+            >
               {message.text}
             </div>
           )}
-          
+
           <div style={styles.registerText}>
             Need an admin account?{" "}
-            <a 
-              href="/admin/register" 
+            <Link
+              to="/admin/register"
               style={styles.registerLink}
-              onMouseOver={(e) => e.target.style.cssText = `
-                color: #059669;
-                font-weight: 600;
-                cursor: pointer;
-                text-decoration: underline;
-                transition: all 0.2s ease;
-              `}
-              onMouseOut={(e) => e.target.style.cssText = `
-                color: #10b981;
-                font-weight: 600;
-                cursor: pointer;
-                text-decoration: none;
-                transition: all 0.2s ease;
-              `}
+              onMouseOver={(e) =>
+                (e.target.style.cssText = `
+    color: #059669;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all 0.2s ease;
+  `)
+              }
+              onMouseOut={(e) =>
+                (e.target.style.cssText = `
+    color: #10b981;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  `)
+              }
             >
               Register now
-            </a>
+            </Link>
           </div>
         </div>
       </div>

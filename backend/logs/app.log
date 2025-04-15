@@ -264,3 +264,15 @@
 [2025-04-14T21:04:33.786Z] INFO: MongoDB connected: ac-l4f0bgz-shard-00-00.yji4jff.mongodb.net
 [2025-04-14T21:06:17.061Z] INFO: Server running at http://localhost:3000
 [2025-04-14T21:06:18.165Z] INFO: MongoDB connected: ac-l4f0bgz-shard-00-02.yji4jff.mongodb.net
+[2025-04-15T04:32:20.554Z] INFO: Server running at http://localhost:3000
+[2025-04-15T04:32:24.488Z] INFO: MongoDB connected: ac-l4f0bgz-shard-00-00.yji4jff.mongodb.net
+[2025-04-15T04:33:00.344Z] INFO: Server running at http://localhost:3000
+[2025-04-15T04:33:00.894Z] ERROR: Error: MO is not defined
+[2025-04-15T04:33:05.306Z] INFO: Server running at http://localhost:3000
+[2025-04-15T04:33:08.395Z] ERROR: Error: MONGO_URI is not defined
+[2025-04-15T04:33:33.017Z] INFO: Server running at http://localhost:3000
+[2025-04-15T04:33:33.418Z] INFO: MongoDB connected: mongodb+srv://amore43035:amit123@cluster0.yji4jff.mongodb.net/
+[2025-04-15T04:34:39.004Z] INFO: Server running at http://localhost:3000
+[2025-04-15T04:34:40.997Z] INFO: MongoDB connected: mongodb+srv://amore43035:amit123@cluster0.yji4jff.mongodb.net/
+[2025-04-15T09:07:09.376Z] INFO: Server running at http://localhost:3000
+[2025-04-15T09:07:10.955Z] INFO: MongoDB connected: mongodb+srv://amore43035:amit123@cluster0.yji4jff.mongodb.net/
