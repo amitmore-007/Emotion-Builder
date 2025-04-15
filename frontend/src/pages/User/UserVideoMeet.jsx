@@ -180,7 +180,7 @@ const UserVideoMeet = () => {
                 className="join-button"
               >
                 <Video className="button-icon" size={20} />
-                Join Google Meet Now
+                Join Google Meet and Get Your Support
               </a>
             </div>
           )}

@@ -278,3 +278,4 @@
 [2025-04-15T09:07:10.955Z] INFO: MongoDB connected: mongodb+srv://amore43035:amit123@cluster0.yji4jff.mongodb.net/
 [2025-04-15T09:10:50.912Z] INFO: Server running at http://localhost:3000
 [2025-04-15T09:10:52.207Z] INFO: MongoDB connected: mongodb+srv://amore43035:amit123@cluster0.yji4jff.mongodb.net/
+[2025-04-15T09:55:53.356Z] INFO: GET /api/videos
