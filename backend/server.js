@@ -8,6 +8,7 @@ const creatorRoutes = require("./routes/creatorRoutes");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const meetingRoutes = require("./routes/meetings");
+const cors = require("cors");
 
 const videoRoutes = require("./routes/VideoRoute"); // Fixed import (removed duplicate)
 
